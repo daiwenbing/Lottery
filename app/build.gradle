@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+    //升级3.0打包错误 添加如下配置就ok了
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    //配置keystore签名
+    signingConfigs {
+        release {
+            storeFile file("C:/Users/dwb/Desktop.jks")
+            storePassword "402372"
+            keyAlias "dwb"
+            keyPassword "402372"
+        }
+    }
+    defaultConfig {
+        applicationId "lottery.dwb.com.lottery"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            //设置id可以同时安装多个
+//            applicationIdSuffix "debug"
+//            applicationIdSuffix "debug_two"
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
