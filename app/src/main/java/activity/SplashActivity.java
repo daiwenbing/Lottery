@@ -32,4 +32,9 @@ public class SplashActivity extends Activity {
         }, MILLI_TIME);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
+    }
 }

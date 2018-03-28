@@ -2,12 +2,17 @@ package application;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import utils.Constant;
 
 /**
  * Created by dwb on 2018/3/26.
@@ -23,6 +28,13 @@ public class DSLApplication extends Application{
         super.onCreate();
         app = this;
         queue = Volley.newRequestQueue(getApplicationContext());
+        DisplayMetrics displayMetrics = getApplicationContext().getResources().getDisplayMetrics();
+        Constant.WIDTHPIXELS = displayMetrics.widthPixels;
+        Constant.HEIGHTPIXELS = displayMetrics.heightPixels;
+        Constant.DENSITYDPI = displayMetrics.densityDpi;
+        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        Constant.SCREEN_WIDTH = wm.getDefaultDisplay().getWidth();
+        Constant.SCREEN_HEIGHT = wm.getDefaultDisplay().getHeight();
     }
 
     /**

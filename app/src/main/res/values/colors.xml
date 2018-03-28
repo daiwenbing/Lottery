@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#353A48</color>
+    <color name="colorPrimaryDark">#353A48</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="material_blue_500">#009688</color>
+    <color name="material_blue_700">#00968B</color>
+    <color name="material_green_A200">#FD87A9</color>
+    <color name="white">#ffffff</color>
+    <color name="main_view_background">#efeff4</color>
+    <color name="green">#A1D000</color>
+    <color name="black">#000000</color>
+    <color name="login_button_bg">#EF4F4F</color>
+    <color name="hpmepagelistitem_img_clap">#FF8000</color>
+    <color name="hpmepagelistitem_img_team">#ED1C24</color>
+    <color name="hpmepagelistitem_img_card">#5C8DF0</color>
+    <color name="homemyaccountfragment_yellow">#EAEB81</color>
+    <color name="blue_order">#3D71DA</color>
+    <color name="regist_araument">#27ACF7</color>
+    <color name="myaccount_txt_yellow">#f4c53a</color>
+    <color name="clapyourhands_prifu_color">#E4E4E4</color>
+    <color name="clapyourhands_money_color">#F2F2F2</color>
+    <color name="recy_color">#FFB1B1</color>
+
+    <color name="color_person">#13C3C2</color>//邀请好友颜色
+    <!-- view背景色 -->
+    <color name="view_background_color">#F8F8F8</color>
+    <!-- 亮灰色  -->
+    <color name="grey">#C9C9C9</color>
+    <!-- 浅白色 -->
+    <color name="gl_background">#737373</color>
+    <color name="light_gray">#E5E5E5</color>
+    <color name="loading_blue">#6B99C9</color>
+    <!-- 蓝色 -->
+    <color name="blue">#2997F4</color>
+    <!-- 字体未选中颜色 灰白-->
+    <color name="hui">#999999</color>
+    <!-- 灰 黑-->
+    <color name="hui_1">#666666</color>
+    <!--table文字颜色-->
+    <color name="main_typeface">#F38F81</color>
+    <!--微信支付-->
+
+    <color name="umeng_background">#D4E0E5</color>
+    <color name="umeng_white">#ffffff</color>
+    <color name="umeng_blue">#0086DC</color>
+    <color name="umeng_black">#000000</color>
+    <color name="umeng_text_color">#575A5C</color>
+    <color name="umeng_divide">#C3C6C9</color>
+    <color name="umeng_primary">#353A47</color>
+    <color name="agency_btn">#FEFBEA</color>
+    <color name="gray_e">#eeeeee</color>
+
 </resources>

@@ -20,6 +20,10 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+    <!--去掉标题栏-->
+    <style name="AppTheme.NoActionBar">
+        <item name="windowNoTitle">true</item>
+    </style>
 
     <style name="Theme.Shelves" parent="android:Theme">
         <item name="android:windowBackground">@mipmap/start2</item>
