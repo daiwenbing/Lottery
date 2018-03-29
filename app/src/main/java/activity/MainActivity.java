@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import application.DSLApplication;
 import fragment.HomeInformationFragment;
+import fragment.HomeInliveFragment;
 import fragment.HomepageFragment;
 import fragment.HomepageMoreFragment;
 import immersive.UltimateBar;
@@ -27,10 +28,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     private FragmentManager manager;
     private HomepageFragment homepageFragment;
     private HomeInformationFragment informationFragment;
+    private HomeInliveFragment homeInliveFragment;
     private HomepageMoreFragment homeMoreFragment;
-    private LinearLayout layout_shouye,layout_zixun,layout_moer;
-    private ImageView img_shouye,img_zixun,img_more;
-    private TextView txt_shouye,txt_zixun,txt_more;
+    private LinearLayout layout_shouye,layout_zixun,layout_moer,layout_live;
+    private ImageView img_shouye,img_zixun,img_more,img_live;
+    private TextView txt_shouye,txt_zixun,txt_more,txt_live;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
             homepageFragment=(HomepageFragment) manager.findFragmentByTag("homepageFragment") ;
             informationFragment=(HomeInformationFragment) manager.findFragmentByTag("informationFragment");
             homeMoreFragment= (HomepageMoreFragment) manager.findFragmentByTag("homeMoreFragment");
+            homeInliveFragment= (HomeInliveFragment) manager.findFragmentByTag("homeInliveFragment");
         }
         initview();
     }
@@ -63,15 +66,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         layout_shouye= (LinearLayout) findViewById(R.id.layout_shouye);
         layout_zixun= (LinearLayout) findViewById(R.id.layout_zixun);
         layout_moer= (LinearLayout) findViewById(R.id.layout_more);
+        layout_live=findViewById(R.id.layout_live);
         txt_shouye=(TextView) findViewById(R.id.txt_shouye);
         txt_zixun=(TextView) findViewById(R.id.txt_zixun);
         txt_more=(TextView) findViewById(R.id.txt_more);
+        txt_live=findViewById(R.id.txt_live);
         img_shouye=(ImageView) findViewById(R.id.img_shouye);
         img_zixun=(ImageView) findViewById(R.id.img_zixun);
         img_more=(ImageView) findViewById(R.id.img_more);
+        img_live=findViewById(R.id.img_live);
         layout_shouye.setOnClickListener(this);
         layout_zixun.setOnClickListener(this);
         layout_moer.setOnClickListener(this);
+        layout_live.setOnClickListener(this);
     }
     public void returnback(){
         setimg();
@@ -89,7 +96,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
             SelectFragment(3);
             txt_more.setTextColor(getResources().getColor(R.color.main_typeface));
             img_more.setImageDrawable(getResources().getDrawable(R.mipmap.icon_wode_2));
+        } else if (DSLContants.nums==4) {
+            SelectFragment(4);
+            txt_live.setTextColor(getResources().getColor(R.color.main_typeface));
+            img_live.setImageDrawable(getResources().getDrawable(R.mipmap.icon_live2));
         }
+
     }
     /**
      * 设置背景
@@ -98,9 +110,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         txt_shouye.setTextColor(getResources().getColor(R.color.hui));
         txt_zixun.setTextColor(getResources().getColor(R.color.hui));
         txt_more.setTextColor(getResources().getColor(R.color.hui));
+        txt_live.setTextColor(getResources().getColor(R.color.hui));
         img_shouye.setImageDrawable(getResources().getDrawable(R.mipmap.icon_fx_02));
         img_zixun.setImageDrawable(getResources().getDrawable(R.mipmap.icon_goucai));
         img_more.setImageDrawable(getResources().getDrawable(R.mipmap.icon_wode));
+        img_live.setImageDrawable(getResources().getDrawable(R.mipmap.icon_live));
     }
     public void SelectFragment(int num){
         //开启事物
@@ -110,6 +124,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         }
         if(informationFragment!=null){
             transcation.hide(informationFragment);
+        }
+        if (homeInliveFragment!=null){
+            transcation.hide(homeInliveFragment);
         }
         if (homeMoreFragment!=null){
             transcation.hide(homeMoreFragment);
@@ -134,6 +151,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
                 transcation.add(R.id.content,homeMoreFragment,"homeMoreFragment");
             }
             transcation.show(homeMoreFragment);
+        }
+        else if (num==4) {
+            if(homeInliveFragment==null) {
+                homeInliveFragment=new HomeInliveFragment();
+                transcation.add(R.id.content,homeInliveFragment,"homeInliveFragment");
+            }
+            transcation.show(homeInliveFragment);
         }
         //提交
         transcation.commit();
@@ -182,6 +206,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
                 img_more.setImageDrawable(getResources().getDrawable(R.mipmap.icon_wode_2));
                 SelectFragment(3);
                 break;
+            case R.id.layout_live:
+                DSLContants.nums=4;
+                txt_live.setTextColor(getResources().getColor(R.color.main_typeface));
+                img_live.setImageDrawable(getResources().getDrawable(R.mipmap.icon_live2));
+                SelectFragment(4);
+                break;
+
         }
     }
 }

@@ -22,4 +22,9 @@
             android:orientation="horizontal" >
         </LinearLayout>
     </RelativeLayout>
+    <include
+        android:layout_below="@+id/lay_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/homepage_head_include"/>
 </RelativeLayout>

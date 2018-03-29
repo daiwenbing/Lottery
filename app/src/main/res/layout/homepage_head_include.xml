@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<LinearLayout
+    android:id="@+id/homepage_layout_kj"
+    android:layout_width="0dp"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_margin="1dp"
+    android:gravity="center"
+    android:background="@drawable/homepage_head_include_style"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/daliy"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/TextSize_12"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:text="@string/homepage_text_a1"/>
+</LinearLayout>
+    <LinearLayout
+        android:id="@+id/homepage_layout_gg"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="1dp"
+        android:gravity="center"
+        android:background="@drawable/homepage_head_include_style"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/news"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/TextSize_12"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:text="@string/homepage_text_a2"/>
+    </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>

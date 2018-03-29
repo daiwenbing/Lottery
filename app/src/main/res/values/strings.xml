@@ -16,4 +16,7 @@
     <string name="net_error3">数据解析异常</string>
 
     <string name="login_title">密码登录</string>
+    <string name="homepage_text_a1">开奖信息</string>
+    <string name="homepage_text_a2">公告信息</string>
+
 </resources>

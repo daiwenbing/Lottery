@@ -51,6 +51,7 @@ public class HomepageFragment extends Fragment implements View.OnClickListener, 
     private HomeAdapter adapter;
     private HonePageListModel honePageListModel;
     private XListView xListView;
+    private LinearLayout homepage_layout_kj,homepage_layout_gg;
     private ArrayList<HonePageListModel.showapi_res_body.result> list;
     private View view;
     private String[] imageUrls;
@@ -111,6 +112,10 @@ public class HomepageFragment extends Fragment implements View.OnClickListener, 
         view=LayoutInflater.from(getActivity()).inflate(R.layout.homepage_list_headview, null);
         advPager = (ViewPager)view.findViewById(R.id.adv_pager);
         group = (ViewGroup)view.findViewById(R.id.viewGroup);
+        homepage_layout_kj=view.findViewById(R.id.homepage_layout_kj);
+        homepage_layout_gg=view.findViewById(R.id.homepage_layout_gg);
+        homepage_layout_kj.setOnClickListener(this);
+        homepage_layout_gg.setOnClickListener(this);
         bind_banner();
     }
     public class itemclink implements AdapterView.OnItemClickListener {
@@ -181,7 +186,7 @@ public class HomepageFragment extends Fragment implements View.OnClickListener, 
     banner_list.add("http://m.159cai.com/sjbguanyajun/guanjun.html");
     banner_list.add("http://m.dididapiao.com/cmsNews/detailCmsNews?cmsNewsId=40794");
     banner_list.add("http://m.159cai.com/discovery/news/football/2018/0302/32651.html");
-    banner_list.add("http://mapi.159cai.com/discovery/news/basketball/2018/0312/32812.html");
+    banner_list.add("http://mapi.159cai.com/discovery/news/basketball/2018/0328/33054.html");
     banner_list.add("http://m.lottech.cn/vue/views/didi/betRedPlan.html#/redPlan/1/D33269DE20A5278C6517B89FC1940850-384234?hiddenHead=false");
 }
     private void initViewPager() {
@@ -326,7 +331,16 @@ public class HomepageFragment extends Fragment implements View.OnClickListener, 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-
+            case R.id.homepage_layout_kj:
+                mintent=new Intent(getActivity(),WebviewActivity.class);
+                mintent.putExtra("url","http://m.159cai.com/kjxx/");
+                startActivity(mintent);
+                break;
+            case R.id.homepage_layout_gg:
+                mintent=new Intent(getActivity(),WebviewActivity.class);
+                mintent.putExtra("url","http://m.159cai.com/gong/index.html");
+                startActivity(mintent);
+                break;
         }
     }
 
