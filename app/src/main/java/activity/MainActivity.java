@@ -1,5 +1,7 @@
 package activity;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.allenliu.versionchecklib.core.AllenChecker;
+import com.allenliu.versionchecklib.core.VersionParams;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import application.DSLApplication;
 import fragment.HomeInformationFragment;
 import fragment.HomeInliveFragment;
@@ -20,7 +29,12 @@ import fragment.HomepageFragment;
 import fragment.HomepageMoreFragment;
 import immersive.UltimateBar;
 import lottery.dwb.com.lottery.R;
+import service.DownLoadAppService;
+import utils.Constant;
+import utils.DSLConnections;
 import utils.DSLContants;
+import utils.DateChange;
+import utils.NetWorkUtil;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener{
     private static Boolean mIsExit = false;
@@ -48,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
             homeInliveFragment= (HomeInliveFragment) manager.findFragmentByTag("homeInliveFragment");
         }
         initview();
+        check_updateapp();
     }
 
     @Override
@@ -60,6 +75,38 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     protected void onDestroy() {
         super.onDestroy();
         finish();
+    }
+    /**
+     * 检测更新
+     */
+    public void check_updateapp(){
+        PackageManager packageManager = getPackageManager();
+        if (NetWorkUtil.checkPackInfo(this, Constant.GO_Package)) {
+            Intent intent = packageManager.getLaunchIntentForPackage(Constant.GO_Package);
+            startActivity(intent);
+        } else {
+            String dateStr = "2018-4-29 1:21:28";
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            try {
+                Date data1= format.parse(dateStr);
+                Date now = new Date();
+                if (DateChange.differentDays(data1,now)>0){
+                    CustomVersionDialogActivity.customVersionDialogIndex = 2;
+//        CustomVersionDialogActivity.isCustomDownloading=true;
+                    VersionParams.Builder builder=new VersionParams.Builder()
+                            .setRequestUrl(DSLConnections.APP_check)
+                            .setService(DownLoadAppService.class)
+                            .setShowDownloadingDialog(false)
+                            .setCustomDownloadActivityClass(CustomVersionDialogActivity.class);
+                    AllenChecker.startVersionCheck(MainActivity.this, builder.build());
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 
     public void initview(){

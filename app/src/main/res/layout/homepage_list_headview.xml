@@ -17,13 +17,23 @@
             android:layout_below="@id/adv_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/shouye_lay_margin_top"
+            android:layout_marginTop="-40dp"
             android:gravity="center"
             android:orientation="horizontal" >
         </LinearLayout>
     </RelativeLayout>
     <include
+        android:id="@+id/layout_mq"
+        android:layout_marginTop="-20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_below="@+id/lay_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/home_mequree_txt"/>
+    <include
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/layout_mq"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/homepage_head_include"/>

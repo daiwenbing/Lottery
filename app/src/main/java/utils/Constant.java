@@ -14,6 +14,7 @@ public class Constant {
      * 应用包名
      */
     public final static String PACKAGE_NAME = DSLApplication.getInstance().getPackageName();
+    public final static String GO_Package="com.bxvip.app.xycaizy";
     /**
      * 屏幕宽度
      */

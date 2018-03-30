@@ -41,6 +41,8 @@
     <dimen name="shouye_margin_top_1">10dp</dimen>
     <dimen name="shouye_margin_top">5dp</dimen>
 
+    <dimen name="shouye_img_w_h">56dp</dimen>
+
     <dimen name="TextSize_10">10sp</dimen>
 
     <dimen name="TextSize_12">12sp</dimen>

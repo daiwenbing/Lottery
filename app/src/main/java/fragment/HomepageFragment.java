@@ -16,12 +16,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
+import com.sunfusheng.marqueeview.MarqueeView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,7 +54,9 @@ public class HomepageFragment extends Fragment implements View.OnClickListener, 
     private HomeAdapter adapter;
     private HonePageListModel honePageListModel;
     private XListView xListView;
-    private LinearLayout homepage_layout_kj,homepage_layout_gg;
+    private MarqueeView marqueeView;
+    private RelativeLayout homepage_layout_kj,homepage_layout_gg,layout_img;
+    private RelativeLayout homepage_layout_3,homepage_layout_4,homepage_layout_5,homepage_layout_6,homepage_layout_7,homepage_layout_8,homepage_layout_9,homepage_layout_10;
     private ArrayList<HonePageListModel.showapi_res_body.result> list;
     private View view;
     private String[] imageUrls;
@@ -114,8 +119,37 @@ public class HomepageFragment extends Fragment implements View.OnClickListener, 
         group = (ViewGroup)view.findViewById(R.id.viewGroup);
         homepage_layout_kj=view.findViewById(R.id.homepage_layout_kj);
         homepage_layout_gg=view.findViewById(R.id.homepage_layout_gg);
+        layout_img=view.findViewById(R.id.layout_img);
+        homepage_layout_3=view.findViewById(R.id.homepage_layout_3);
+        homepage_layout_4=view.findViewById(R.id.homepage_layout_4);
+        homepage_layout_5=view.findViewById(R.id.homepage_layout_5);
+        homepage_layout_6=view.findViewById(R.id.homepage_layout_6);
+        homepage_layout_7=view.findViewById(R.id.homepage_layout_7);
+        homepage_layout_8=view.findViewById(R.id.homepage_layout_8);
+        homepage_layout_9=view.findViewById(R.id.homepage_layout_9);
+        homepage_layout_10=view.findViewById(R.id.homepage_layout_10);
+        marqueeView=view.findViewById(R.id.marqueeView);
         homepage_layout_kj.setOnClickListener(this);
         homepage_layout_gg.setOnClickListener(this);
+        layout_img.setOnClickListener(this);
+        homepage_layout_3.setOnClickListener(this);
+        homepage_layout_4.setOnClickListener(this);
+        homepage_layout_5.setOnClickListener(this);
+        homepage_layout_6.setOnClickListener(this);
+        homepage_layout_7.setOnClickListener(this);
+        homepage_layout_8.setOnClickListener(this);
+        homepage_layout_9.setOnClickListener(this);
+        homepage_layout_10.setOnClickListener(this);
+        marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, TextView textView) {
+                mintent=new Intent(getActivity(), WebviewActivity.class);
+                mintent.putExtra("title",textView.getText().toString());
+                mintent.putExtra("url","http://mapi.159cai.com/discovery/notice/2018/0320/32942.html");
+                startActivity(mintent);
+            }
+        });
+        bindmequrelist();
         bind_banner();
     }
     public class itemclink implements AdapterView.OnItemClickListener {
@@ -164,6 +198,15 @@ public class HomepageFragment extends Fragment implements View.OnClickListener, 
             }
         }catch (NullPointerException e){
         }
+    }
+    public void bindmequrelist(){
+        List<String> info = new ArrayList<>();
+        info.add("关于发单【跟单异常】调整公告");
+        info.add("关于【预约发单调整】公告");
+        marqueeView.startWithList(info);
+
+// 在代码里设置自己的动画
+        marqueeView.startWithList(info, R.anim.anim_bottom_in, R.anim.anim_top_out);
     }
     /**
      * 初始化banner数据
@@ -333,12 +376,58 @@ public class HomepageFragment extends Fragment implements View.OnClickListener, 
         switch (view.getId()){
             case R.id.homepage_layout_kj:
                 mintent=new Intent(getActivity(),WebviewActivity.class);
-                mintent.putExtra("url","http://m.159cai.com/kjxx/");
+                mintent.putExtra("url","http://m.dididapiao.com/bet/ssq/index;jsessionid=A69D197C8A190FBA482D85A53F6BC92B.w3?clear=1&agentId=100107");
                 startActivity(mintent);
                 break;
             case R.id.homepage_layout_gg:
                 mintent=new Intent(getActivity(),WebviewActivity.class);
-                mintent.putExtra("url","http://m.159cai.com/gong/index.html");
+                mintent.putExtra("url","http://m.dididapiao.com/bet/tcdlt/index;jsessionid=A69D197C8A190FBA482D85A53F6BC92B.w3?clear=1&agentId=100107");
+                startActivity(mintent);
+                break;
+            case R.id.layout_img:
+                //第一资讯
+                mintent=new Intent(getActivity(),WebviewActivity.class);
+                mintent.putExtra("url","http://m.159cai.com/gong/news.html");
+                startActivity(mintent);
+                break;
+            case R.id.homepage_layout_3:
+                mintent=new Intent(getActivity(),WebviewActivity.class);
+                mintent.putExtra("url","http://m.dididapiao.com/bet/fc3d/index;jsessionid=A69D197C8A190FBA482D85A53F6BC92B.w3?clear=1&agentId=100107");
+                startActivity(mintent);
+                break;
+            case R.id.homepage_layout_4:
+                mintent=new Intent(getActivity(),WebviewActivity.class);
+                mintent.putExtra("url","http://m.dididapiao.com/bet/y11x5/index;jsessionid=A69D197C8A190FBA482D85A53F6BC92B.w3?clear=1&agentId=100107");
+                startActivity(mintent);
+                break;
+            case R.id.homepage_layout_5:
+                mintent=new Intent(getActivity(),WebviewActivity.class);
+                mintent.putExtra("url","http://m.dididapiao.com/bet/jxk3/index;jsessionid=A69D197C8A190FBA482D85A53F6BC92B.w3?clear=1&agentId=100107");
+                startActivity(mintent);
+                break;
+            case R.id.homepage_layout_6:
+                mintent=new Intent(getActivity(),WebviewActivity.class);
+                mintent.putExtra("url","http://m.dididapiao.com/bet/jsk3/index;jsessionid=A69D197C8A190FBA482D85A53F6BC92B.w3?clear=1&agentId=100107");
+                startActivity(mintent);
+                break;
+            case R.id.homepage_layout_7:
+                mintent=new Intent(getActivity(),WebviewActivity.class);
+                mintent.putExtra("url","http://m.dididapiao.com/b/zchome;jsessionid=925822A1DDCEBE6924C1D2CE8B630820.w3?agentId=100107");
+                startActivity(mintent);
+                break;
+            case R.id.homepage_layout_8:
+                mintent=new Intent(getActivity(),WebviewActivity.class);
+                mintent.putExtra("url","http://m.dididapiao.com/info/lc/index;jsessionid=925822A1DDCEBE6924C1D2CE8B630820.w3?agentId=100107");
+                startActivity(mintent);
+                break;
+            case R.id.homepage_layout_9:
+                mintent=new Intent(getActivity(),WebviewActivity.class);
+                mintent.putExtra("url","http://m.dididapiao.com/bet/tcpl3/index;jsessionid=925822A1DDCEBE6924C1D2CE8B630820.w3?clear=1&agentId=100107");
+                startActivity(mintent);
+                break;
+            case R.id.homepage_layout_10:
+                mintent=new Intent(getActivity(),WebviewActivity.class);
+                mintent.putExtra("url","http://m.dididapiao.com/bet/tcpl5/index;jsessionid=925822A1DDCEBE6924C1D2CE8B630820.w3?clear=1&agentId=100107");
                 startActivity(mintent);
                 break;
         }
