@@ -12,6 +12,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import lottery.dwb.com.lottery.R;
@@ -21,6 +22,7 @@ import lottery.dwb.com.lottery.R;
  */
 
 public class HomeInformationFragment extends Fragment {
+    private ImageView img_back;
     private WebView webview;
     private WebSettings webSettings;
     private ProgressBar progressbar;
@@ -28,7 +30,7 @@ public class HomeInformationFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.webview_notitle_view,null);
+        return inflater.inflate(R.layout.webview_back_notitle_view,null);
     }
 
     @Override
@@ -40,11 +42,20 @@ public class HomeInformationFragment extends Fragment {
     public void initview(){
         progressbar= (ProgressBar)getView().findViewById(R.id.progressbar);
         webview=(WebView)getView().findViewById(R.id.webview);
+        img_back=getView().findViewById(R.id.img_back);
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(webview.canGoBack()){
+                    webview.goBack();
+                }
+            }
+        });
         init();
     }
     private void init(){
         //WebView加载web资源
-        webview.loadUrl("http://m.dididapiao.com/cmsNews/listCmsNews?agentId=100107");
+        webview.loadUrl("http://m.159cai.com/gong/news.html");
         webview.setLayerType(View.LAYER_TYPE_HARDWARE, null);//启用加速，否则滑动界面不流畅
         webSettings = webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -67,6 +78,14 @@ public class HomeInformationFragment extends Fragment {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 progressbar.setVisibility(View.INVISIBLE);
+                //编写 javaScript方法
+                String javascript =  "javascript:function hideOther() {" + "document.getElementsByClassName('top')[0].remove();}";
+
+                //创建方法
+                view.loadUrl(javascript);
+
+                //加载方法
+                view.loadUrl("javascript:hideOther();");
             }
 
             @Override
@@ -93,4 +112,5 @@ public class HomeInformationFragment extends Fragment {
 //            }
 //        }, "demo");
     }
+
 }

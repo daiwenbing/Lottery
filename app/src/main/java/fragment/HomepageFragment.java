@@ -227,10 +227,10 @@ public class HomepageFragment extends Fragment implements View.OnClickListener, 
             "http://m.dididapiao.com/upload/cms/news/images/2017/12/20/tn_up_201712201706000007.png"};
     banner_list = new ArrayList();
     banner_list.add("http://m.159cai.com/sjbguanyajun/guanjun.html");
-    banner_list.add("http://m.dididapiao.com/cmsNews/detailCmsNews?cmsNewsId=40794");
+    banner_list.add("http://mapi.159cai.com/discovery/news/football/2018/0330/33094.html");
     banner_list.add("http://m.159cai.com/discovery/news/football/2018/0302/32651.html");
     banner_list.add("http://mapi.159cai.com/discovery/news/basketball/2018/0328/33054.html");
-    banner_list.add("http://m.lottech.cn/vue/views/didi/betRedPlan.html#/redPlan/1/D33269DE20A5278C6517B89FC1940850-384234?hiddenHead=false");
+    banner_list.add("http://m.lottech.cn/vue/views/didi/betRedPlan.html#/redPlan/1/D33269DE20A5278C6517B89FC1940850-384234?hiddenHead=true");
 }
     private void initViewPager() {
 //	      这里存放的是四张广告背景
@@ -411,15 +411,7 @@ public class HomepageFragment extends Fragment implements View.OnClickListener, 
                 startActivity(mintent);
                 break;
             case R.id.homepage_layout_7:
-                mintent=new Intent(getActivity(),WebviewActivity.class);
-                mintent.putExtra("url","http://m.dididapiao.com/b/zchome;jsessionid=925822A1DDCEBE6924C1D2CE8B630820.w3?agentId=100107");
-                startActivity(mintent);
-                break;
             case R.id.homepage_layout_8:
-                mintent=new Intent(getActivity(),WebviewActivity.class);
-                mintent.putExtra("url","http://m.dididapiao.com/info/lc/index;jsessionid=925822A1DDCEBE6924C1D2CE8B630820.w3?agentId=100107");
-                startActivity(mintent);
-                break;
             case R.id.homepage_layout_9:
                 mintent=new Intent(getActivity(),WebviewActivity.class);
                 mintent.putExtra("url","http://m.dididapiao.com/bet/tcpl3/index;jsessionid=925822A1DDCEBE6924C1D2CE8B630820.w3?clear=1&agentId=100107");

@@ -29,8 +29,9 @@ public class WebviewActivity extends AppCompatActivity {
     private LinearLayout toorbar_layout_main_back;
     private WebView webview;
     private WebSettings webSettings;
-    private String url,title;
+    private String url,title=null;
     private ProgressBar progressbar;
+    private static String javascripts;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,10 @@ public void initview(){
     toorbar_layout_main_back.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            if(webview.canGoBack()){
+                webview.goBack();
+                return ;
+            }
             finish();
         }
     });
@@ -80,6 +85,36 @@ public void initview(){
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 progressbar.setVisibility(View.INVISIBLE);
+                if (null==title||"".equals(title)){
+                    toorbar_txt_main_title.setText(view.getTitle());
+                }
+                //编写 javaScript方法  header_bg icon
+
+                if (url.contains("http://m.159cai.com/gong/news.html")){
+                    javascripts =  "javascript:function hideOther() {" + "document.getElementsByClassName('top')[0].remove();}";
+                } else if (url.contains("http://m.dididapiao.com/bet")){
+                    javascripts =  "javascript:function hideOther() {" +
+                            "document.getElementsByClassName('one_i')[0].remove();" +
+                            "document.getElementsByClassName('choose_session')[0].remove();}";
+                 }else if (url.contains("http://m.159cai.com/sjbguanyajun/guanjun.html")){
+                    javascripts =  "javascript:function hideOther() {" +
+                            "document.getElementsByClassName('menu')[0].remove();" +
+                            "document.getElementsByTagName('footer')[0].remove();}";
+                }else if (url.contains("http://m.lottech.cn")){
+                            javascripts =  "javascript:function hideOther() {" + "document.getElementsByClassName('fixed_bottom')[0].remove();}";
+                }
+                else {
+         /*           javascripts =  "javascript:function hideOther() {" +
+                            "document.getElementsByClassName('one_i')[0].remove();" +
+                            "document.getElementsByClassName('choose_session')[0].remove();" +
+                            "document.getElementsByClassName('top_back')[0].remove();" +
+                            "document.getElementsByClassName('fixed_bottom')[0].remove();" +
+                            "document.getElementsByClassName('back')[0].remove();}" ;*/
+                }
+                //创建方法
+                view.loadUrl(javascripts);
+                //加载方法
+                view.loadUrl("javascript:hideOther();");
             }
 
             @Override
@@ -89,7 +124,6 @@ public void initview(){
                 view.loadUrl(url);
                 return false;
             }
-
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 super.onReceivedError(view, request, error);

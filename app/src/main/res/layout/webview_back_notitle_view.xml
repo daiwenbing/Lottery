@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="#EA3B32">
     <WebView
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/webview"
         android:scrollbars="none"
         android:layout_below="@+id/include"
