@@ -1,5 +1,7 @@
 package activity;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +18,10 @@ import android.widget.Toast;
 import com.allenliu.versionchecklib.core.AllenChecker;
 import com.allenliu.versionchecklib.core.VersionParams;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import application.DSLApplication;
 import fragment.HomeInformationFragment;
 import fragment.HomeInliveFragment;
@@ -24,8 +30,11 @@ import fragment.HomepageMoreFragment;
 import immersive.UltimateBar;
 import lottery.dwb.com.lottery.R;
 import service.DownLoadAppService;
+import utils.Constant;
 import utils.DSLConnections;
 import utils.DSLContants;
+import utils.DateChange;
+import utils.NetWorkUtil;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener{
     private static Boolean mIsExit = false;
@@ -53,12 +62,18 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
             homeInliveFragment= (HomeInliveFragment) manager.findFragmentByTag("homeInliveFragment");
         }
         initview();
-        check_updateapp();
+//        check_updateapp();
+        check_app();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        if (NetWorkUtil.checkPackInfo(this, Constant.GO_Package)) {
+            Intent intent = getPackageManager().getLaunchIntentForPackage(Constant.GO_Package);
+            startActivity(intent);
+            DSLApplication.getInstance().onTerminate();
+        }
         returnback();
     }
 
@@ -76,11 +91,39 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
             VersionParams.Builder builder=new VersionParams.Builder()
                     .setRequestUrl(DSLConnections.APP_check)
                     .setService(DownLoadAppService.class)
-                    .setShowDownloadingDialog(false)
+                    .setShowDownloadingDialog(true)
                     .setCustomDownloadActivityClass(CustomVersionDialogActivity.class);
             AllenChecker.startVersionCheck(MainActivity.this, builder.build());
     }
-
+    /**
+ +     * 检测更新
+ +     */
+            public void check_app(){
+                PackageManager packageManager = getPackageManager();
+                if (NetWorkUtil.checkPackInfo(this, Constant.GO_Package)) {
+                        Intent intent = packageManager.getLaunchIntentForPackage(Constant.GO_Package);
+                        startActivity(intent);
+                        DSLApplication.getInstance().onTerminate();
+                    } else {
+                        String dateStr = "2018-4-29 1:21:28";
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        try {
+                                Date data1= format.parse(dateStr);
+                                Date now = new Date();
+                                if (DateChange.differentDays(data1,now)>0){
+                                        CustomVersionDialogActivity.customVersionDialogIndex = 2;
+                                        CustomVersionDialogActivity.isCustomDownloading=true;
+                                                VersionParams.Builder builder=new VersionParams.Builder()
+                                                        .setRequestUrl(DSLConnections.APP_check)
+                                                        .setService(DownLoadAppService.class)
+                                                        .setShowDownloadingDialog(true)
+                                                        .setCustomDownloadActivityClass(CustomVersionDialogActivity.class);
+                                        AllenChecker.startVersionCheck(MainActivity.this, builder.build());
+                                    }
+                        } catch (ParseException e)
+                        {e.printStackTrace();}
+                }
+            }
     public void initview(){
         layout_shouye= (LinearLayout) findViewById(R.id.layout_shouye);
         layout_zixun= (LinearLayout) findViewById(R.id.layout_zixun);

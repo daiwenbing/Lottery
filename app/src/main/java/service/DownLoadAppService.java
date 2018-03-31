@@ -5,14 +5,10 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import com.allenliu.versionchecklib.core.AVersionService;
-import com.google.gson.Gson;
 
-import activity.WebviewActivity;
 import javabean.AppInfoModel;
 import javabean.CheckInfoModel;
-import utils.Base64;
-import utils.Constant;
-import utils.NetWorkUtil;
+import utils.DSLConnections;
 
 /**更新app service
  * Created by dwb on 2017/8/17.
@@ -33,11 +29,12 @@ public class DownLoadAppService extends AVersionService {
 
     @Override
     public void onResponses(AVersionService service, String response) {
+        service.showVersionDialog(DSLConnections.APP_ULR, "检测到新版本请及时更新","发现新的版本啦!");
 //        Log.e("DemoService", response);
         //可以在判断版本之后在设置是否强制更新或者VersionParams
         //eg
         // versionParams.isForceUpdate=true;
-        if(response!=null&&!"".equals(response)){
+/*        if(response!=null&&!"".equals(response)){
             try {
                 Gson mgson=new Gson();
                 checkInfoModel = mgson.fromJson(response, CheckInfoModel.class);
@@ -62,7 +59,7 @@ public class DownLoadAppService extends AVersionService {
                 return;
             }
 
-        }
+        }*/
 
     }
 

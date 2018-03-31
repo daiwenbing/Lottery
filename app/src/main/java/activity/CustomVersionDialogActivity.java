@@ -1,12 +1,15 @@
 package activity;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.allenliu.versionchecklib.callback.APKDownloadListener;
@@ -58,6 +61,7 @@ public class CustomVersionDialogActivity extends VersionDialogActivity implement
 
     @Override
     public void onDownloadFail() {
+
     }
 
     @Override
@@ -98,6 +102,8 @@ public class CustomVersionDialogActivity extends VersionDialogActivity implement
      */
     private void customVersionDialogTwo() {
         versionDialog = new BaseDialog(this, R.style.BaseDialog, R.layout.custom_dialog_two_layout);
+        versionDialog.setCancelable(false);
+        versionDialog.setCanceledOnTouchOutside(false);
         versionDialog.show();
         //设置dismiss listener 用于强制更新会回调dialogDismiss方法
         versionDialog.setOnDismissListener(this);
@@ -109,9 +115,9 @@ public class CustomVersionDialogActivity extends VersionDialogActivity implement
         versionDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                versionDialog.dismiss();
+             /*   versionDialog.dismiss();
                 CustomVersionDialogActivity.super.dealAPK();
-                finish();
+                finish();*/
             }
         });
         tvUpdate.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +126,7 @@ public class CustomVersionDialogActivity extends VersionDialogActivity implement
                 versionDialog.dismiss();
 //                downloadFile();
                 CustomVersionDialogActivity.super.dealAPK();
-                finish();
+//                finish();
 
             }
         });
@@ -128,8 +134,9 @@ public class CustomVersionDialogActivity extends VersionDialogActivity implement
             @Override
             public void onClick(View view) {
                 versionDialog.dismiss();
+//                downloadFile();
                 CustomVersionDialogActivity.super.dealAPK();
-                finish();
+//                finish();
             }
         });
         versionDialog.show();
@@ -158,8 +165,7 @@ public class CustomVersionDialogActivity extends VersionDialogActivity implement
      */
     @Override
     public void showLoadingDialog(int currentProgress) {
-            finish();
-/*        if (!isCustomDownloading) {
+        if (!isCustomDownloading) {
             super.showLoadingDialog(currentProgress);
         } else {
             //使用父类的loadingDialog保证下载成功会dimiss掉dialog
@@ -172,7 +178,6 @@ public class CustomVersionDialogActivity extends VersionDialogActivity implement
                     @Override
                     public void onCancel(DialogInterface dialog) {
                         finish();
-
                     }
                 });
             }
@@ -181,7 +186,7 @@ public class CustomVersionDialogActivity extends VersionDialogActivity implement
             tvProgress.setText(String.format(getString(R.string.versionchecklib_progress), currentProgress));
             pb.setProgress(currentProgress);
             loadingDialog.show();
-        }*/
+        }
 //        Toast.makeText(this, "显示自定义的下载加载框", Toast.LENGTH_SHORT).show();
     }
 
@@ -193,7 +198,6 @@ public class CustomVersionDialogActivity extends VersionDialogActivity implement
     @Override
     public void dialogDismiss(DialogInterface dialog) {
 //        Log.e("CustomVersionDialogActi", "dialog dismiss 回调");
-        CustomVersionDialogActivity.super.dealAPK();
         if (isForceUpdate) {
             finish();
             //我这里为了简便直接finish 就行了
