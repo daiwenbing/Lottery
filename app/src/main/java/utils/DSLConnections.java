@@ -18,5 +18,5 @@ public class DSLConnections {
      */
     public static final String APP_ULR="http://bxvip.oss-cn-zhangjiakou.aliyuncs.com/xycai/xycaizy.apk";
 
-    public static String APP_check="http://m.renrendaipai.com/appVersion/getVersion.do?channel=android&app=2";
+    public static String APP_check="http://vipapp.01appkkk.com/Lottery_server/get_init_data.php?type=android&appid=lottery.dwb.com.lottery";
 }

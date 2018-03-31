@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
     <LinearLayout
+        android:visibility="gone"
         android:padding="10dp"
         android:layout_marginTop="1px"
         android:background="@color/white"
