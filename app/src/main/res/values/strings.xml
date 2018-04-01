@@ -21,5 +21,6 @@
     <string name="login_activity_phonenum">请输入您的手机号码</string>
     <string name="feeback_txt_hint">我们正在倾听您的建议...</string>
     <string name="load_message">正在下载...</string>
+    <string name="update_name">检测到新的版本</string>
 
 </resources>

@@ -3,10 +3,29 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:padding="20dp"
     android:layout_height="wrap_content">
-
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/ic_launcher"
+            />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/TextSize_15"
+            android:textColor="@color/hpmepagelistitem_img_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/update_name"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
     <android.support.v4.widget.ContentLoadingProgressBar
         android:layout_width="match_parent"
         android:id="@+id/pb"
+        android:layout_marginTop="10dp"
         style="?android:attr/progressBarStyleHorizontal"
         android:progressDrawable="@drawable/progressbar_horizontal"
         android:max="100"

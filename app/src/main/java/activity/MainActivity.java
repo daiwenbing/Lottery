@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         }
         initview();
 //        check_updateapp();
-        check_app();
+//        check_app();
     }
 
     @Override

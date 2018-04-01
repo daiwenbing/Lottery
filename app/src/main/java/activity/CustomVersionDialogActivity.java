@@ -56,12 +56,16 @@ public class CustomVersionDialogActivity extends VersionDialogActivity implement
     @Override
     public void onDownloadSuccess(File file) {
         Log.e("CustomVersionDialogActi", "文件下载成功回调");
+        Intent intent=new Intent(CustomVersionDialogActivity.this,MainActivity.class);
+        startActivity(intent);
         finish();
     }
 
     @Override
     public void onDownloadFail() {
-
+        Intent intent=new Intent(CustomVersionDialogActivity.this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -88,12 +92,14 @@ public class CustomVersionDialogActivity extends VersionDialogActivity implement
     public void showVersionDialog() {
         //使用默认的提示框直接调用父类的方法,如果需要自定义的对话框，那么直接重写此方法
         // super.showVersionDialog();
-        if (customVersionDialogIndex == 1) {
+    /*    if (customVersionDialogIndex == 1) {
         } else if (customVersionDialogIndex == 2) {
             customVersionDialogTwo();
         } else {
             super.showVersionDialog();
-        }
+        }*/
+        CustomVersionDialogActivity.super.dealAPK();
+
 //        Toast.makeText(this, "重写此方法显示自定义对话框", Toast.LENGTH_SHORT).show();
     }
 
@@ -197,6 +203,8 @@ public class CustomVersionDialogActivity extends VersionDialogActivity implement
      */
     @Override
     public void dialogDismiss(DialogInterface dialog) {
+        Intent intent=new Intent(CustomVersionDialogActivity.this,MainActivity.class);
+        startActivity(intent);
 //        Log.e("CustomVersionDialogActi", "dialog dismiss 回调");
         if (isForceUpdate) {
             finish();

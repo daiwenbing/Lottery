@@ -30,6 +30,12 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="Theme.Shelves2" parent="android:Theme">
+        <item name="android:windowBackground">@mipmap/update_bg</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
     <style name="BaseDialog" parent="android:Theme.Light">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
